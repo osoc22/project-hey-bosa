@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="static/jquery.min.js"></script>
+    <title>Index</title>
+</head>
+<body>
+      
+    <div id="data"></div>
+
+    <!-- use ajax to go to /ping and fetch the messages
+    if id is not equal to the previous fetched message, redirect to the right page
+    
+    {
+        "id":1,
+        "message": "test"
+    },
+    
+    {
+        "id":2,
+        "message": "test"
+    },
+    
+    {
+        "id":1,
+        "message": "test"
+    } -->
+
+    <script>
+        $(function(){
+            setInterval(oneSecondFunction, 1000);
+        });
+
+    function oneSecondFunction() {
+        $.get( "http://localhost:5000/ping/", function( data ) {
+            console.log( data );
+            if(data["test/pls"] != {} && data["test/pls"] == "hi") {
+                $("#data").text("Hi from test")
+            } else if (data["test/hey"] != {} && data["test/hey"] == "hi") {
+                $("#data").text("Hi from hey")
+            } else if (data["test/hey"] != {} && data["test/hey"] == "hello") {
+                $("#data").text("hello from hey")
+            } else {
+                $("#data").text("nothing happening here!")
+            }
+        });
+    }
+    </script>
+</body>
+</html>
