@@ -1,0 +1,12 @@
+SIL SIL_B SIL_E SIL_I SIL_S SPN SPN_B SPN_E SPN_I SPN_S NSN NSN_B NSN_E NSN_I NSN_S
+e:_B e:_E e:_I e:_S OI_B OI_E OI_I OI_S tS_B tS_E tS_I tS_S nC_B nC_E nC_I nC_S aI_B aI_E aI_I aI_S ts_B ts_E ts_I ts_S 3_B 3_E 3_I 3_S aU_B aU_E aU_I aU_S dZ_B dZ_E dZ_I dZ_S ?_B ?_E ?_I ?_S A_B A_E A_I A_S @_B @_E @_I @_S i:_B i:_E i:_I i:_S E_B E_E E_I E_S D_B D_E D_I D_S pf_B pf_E pf_I pf_S I_B I_E I_I I_S O_B O_E O_I O_S N_B N_E N_I N_S S_B S_E S_I S_S U_B U_E U_I U_S T_B T_E T_I T_S V_B V_E V_I V_S Z_B Z_E Z_I Z_S a_B a_E a_I a_S b_B b_E b_I b_S e_B e_E e_I e_S d_B d_E d_I d_S g_B g_E g_I g_S f_B f_E f_I f_S i_B i_E i_I i_S h_B h_E h_I h_S k_B k_E k_I k_S j_B j_E j_I j_S m_B m_E m_I m_S l_B l_E l_I l_S o_B o_E o_I o_S n_B n_E n_I n_S p_B p_E p_I p_S s_B s_E s_I s_S r_B r_E r_I r_S u_B u_E u_I u_S t_B t_E t_I t_S w_B w_E w_I w_S v_B v_E v_I v_S {_B {_E {_I {_S z_B z_E z_I z_S
+'e:_B 'e:_E 'e:_I 'e:_S 'OI_B 'OI_E 'OI_I 'OI_S 'aI_B 'aI_E 'aI_I 'aI_S '3_B '3_E '3_I '3_S 'aU_B 'aU_E 'aU_I 'aU_S 'A_B 'A_E 'A_I 'A_S '@_B '@_E '@_I '@_S 'E_B 'E_E 'E_I 'E_S 'I_B 'I_E 'I_I 'I_S 'O_B 'O_E 'O_I 'O_S 'U_B 'U_E 'U_I 'U_S 'V_B 'V_E 'V_I 'V_S 'e_B 'e_E 'e_I 'e_S 'i_B 'i_E 'i_I 'i_S 'o_B 'o_E 'o_I 'o_S 'u_B 'u_E 'u_I 'u_S '{_B '{_E '{_I '{_S
+'e:_B e:_B 'OI_B OI_B tS_B nC_B 'aI_B aI_B ts_B '3_B 3_B 'aU_B aU_B dZ_B ?_B 'A_B A_B '@_B @_B i:_B 'E_B E_B D_B pf_B 'I_B I_B 'O_B O_B N_B S_B 'U_B U_B T_B 'V_B V_B Z_B a_B b_B 'e_B e_B d_B g_B f_B 'i_B i_B h_B k_B j_B m_B l_B 'o_B o_B n_B p_B s_B r_B 'u_B u_B t_B w_B v_B '{_B {_B z_B 
+'e:_E e:_E 'OI_E OI_E tS_E nC_E 'aI_E aI_E ts_E '3_E 3_E 'aU_E aU_E dZ_E ?_E 'A_E A_E '@_E @_E i:_E 'E_E E_E D_E pf_E 'I_E I_E 'O_E O_E N_E S_E 'U_E U_E T_E 'V_E V_E Z_E a_E b_E 'e_E e_E d_E g_E f_E 'i_E i_E h_E k_E j_E m_E l_E 'o_E o_E n_E p_E s_E r_E 'u_E u_E t_E w_E v_E '{_E {_E z_E 
+'e:_I e:_I 'OI_I OI_I tS_I nC_I 'aI_I aI_I ts_I '3_I 3_I 'aU_I aU_I dZ_I ?_I 'A_I A_I '@_I @_I i:_I 'E_I E_I D_I pf_I 'I_I I_I 'O_I O_I N_I S_I 'U_I U_I T_I 'V_I V_I Z_I a_I b_I 'e_I e_I d_I g_I f_I 'i_I i_I h_I k_I j_I m_I l_I 'o_I o_I n_I p_I s_I r_I 'u_I u_I t_I w_I v_I '{_I {_I z_I 
+'e:_S e:_S 'OI_S OI_S tS_S nC_S 'aI_S aI_S ts_S '3_S 3_S 'aU_S aU_S dZ_S ?_S 'A_S A_S '@_S @_S i:_S 'E_S E_S D_S pf_S 'I_S I_S 'O_S O_S N_S S_S 'U_S U_S T_S 'V_S V_S Z_S a_S b_S 'e_S e_S d_S g_S f_S 'i_S i_S h_S k_S j_S m_S l_S 'o_S o_S n_S p_S s_S r_S 'u_S u_S t_S w_S v_S '{_S {_S z_S 
+SIL SPN NSN 
+SIL_B SPN_B NSN_B 
+SIL_E SPN_E NSN_E 
+SIL_I SPN_I NSN_I 
+SIL_S SPN_S NSN_S 
