@@ -31,10 +31,16 @@ print('Configured MQTT IP Address: ' + app.config['MQTT_BROKER_URL'])
 # app.config['MQTT_TLS_INSECURE'] = True
 # app.config['MQTT_TLS_CA_CERTS'] = 'ca.crt'
 
+messages_recieved = {}
+messages_old = {}
+clock_start = 10
+debug_level = 0
+
 mqtt = Mqtt(app)
 socketio = SocketIO(app)
 bootstrap = Bootstrap(app)
-messages_recieved = {}
+
+# 0 to hide debug prints, 1 to show them
 
 @app.route('/')
 def index():
@@ -53,6 +59,7 @@ def confirm_connect():
 @socketio.on('subscribe')
 def handle_subscribe(data):
     mqtt.subscribe(data)
+    print('subscribed to {}!'.format(data))
 
 
 @socketio.on('unsubscribe_all')
@@ -61,21 +68,55 @@ def handle_unsubscribe_all():
 
 @mqtt.on_message()
 def handle_messages(client, userdata, message):
+    global clock_start
     print('Received message on topic {}: {}'.format(message.topic, message.payload.decode()))
 
-    messages_recieved.update({message.topic: message.payload.decode()})
+    # before sending new message, derement clock for older messages
+    decrement_messages_clock()
 
+    messages_recieved.update({message.topic: (message.payload.decode(), clock_start)})
 
-def display_p1():
-    return render_template('page1.html')
+    check_messages_clock()
+    clean_messages_dict()
+    clear_messages_old()
 
-def display_p2():
-    return render_template('page2.html')
+def decrement_messages_clock():
+    for item in messages_recieved.items():
+        clock = item[1][1]
+        clock -= 1
+        message = (item[1][0], clock)
+        messages_recieved.update({item[0]: message})
 
+        print('\n updated clock for', item[0])
+
+def check_messages_clock():
+    for item in messages_recieved.items():
+        topic = item[0]
+        value = item[1]
+        if value[1] <= 0:
+            add_to_be_deleted({topic: value})
+
+def clean_messages_dict():
+    if len(messages_old) > 0:
+        # if messages_old not empty remove each key of messages_old, from messages_recieved
+        for item in messages_old.items():
+            topic = item[0]
+            delete_dict_topic(str(topic))
+    else:
+        if debug_level == 1:
+            print("nothing deleted")
+
+def add_to_be_deleted(item):
+    messages_old.update(item)
+
+def delete_dict_topic(topic):
+    messages_recieved.pop(topic)
+
+def clear_messages_old():
+    messages_old.clear()
 
 handle_subscribe('test/pls')
 handle_subscribe('test/hey')
-
 
 if __name__ == '__main__':
     socketio.run(app, host='0.0.0.0', port=5000, use_reloader=False, debug=True)
