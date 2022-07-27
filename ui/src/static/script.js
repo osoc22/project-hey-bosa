@@ -7,15 +7,17 @@ function oneSecondFunction() {
         console.log( data );
 
         if(Object.keys(data).length > 0) {
-
-            if(data["test/pls"] != undefined && data["test/pls"][1] >= 10 && data["test/pls"][0] == "hi") {
+            if(data["hermes/handler/qr"] != undefined && data["hermes/handler/qr"][1] >= 10 && data["hermes/handler/qr"][0] == "{}") {
                 $("#image").html('<img src="/static/img/BigTextandQRcode.png" alt="QR code to allesoverseks.be">');
 
-            } else if (data["test/hey"]  != undefined && data["test/hey"][1] >= 10 && data["test/hey"][0] == "hi") {
+            } 
+            else if (data["hermes/handler/list"]  != undefined && data["hermes/handler/list"][1] >= 10) {
                 $("#image").html('<img src="/static/img/list.png" alt="list of types of sexual abuse">');
-            } else {
-                // TODO rework script structure to make it cleaner
+
+            } else if (data["hermes/handler/convesation/stop"]  != undefined && data["hermes/handler/convesation/stop"][1] >= 10) {
+                $("#image").html("<img src='/static/img/titlePage.png' alt='vac-title-page'>");
             }
+            
         } else {
             $("#image").html("<img src='/static/img/titlePage.png' alt='vac-title-page'>");
         }
