@@ -6,7 +6,6 @@ A small application to show a user interface for VAC, using Flask-MQTT.
 
 from ast import If
 import eventlet
-import json
 from flask import Flask, render_template
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
@@ -109,12 +108,9 @@ def delete_dict_topic(topic):
 def clear_messages_old():
     messages_old.clear()
 
-handle_subscribe('test/pls')
-handle_subscribe('test/hey')
-
 # to be activated when using definitive mqtt broker URL
-# handle_subscribe('hermes/handler/#')
-# handle_subscribe('hermes/button/#')
+handle_subscribe('hermes/handler/#')
+handle_subscribe('hermes/button/#')
 
 if __name__ == '__main__':
     socketio.run(app, host='0.0.0.0', port=5000, use_reloader=False, debug=True)
