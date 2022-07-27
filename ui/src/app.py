@@ -17,7 +17,7 @@ eventlet.monkey_patch()
 app = Flask(__name__)
 app.config['SECRET'] = 'my secret key'
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-app.config['MQTT_BROKER_URL'] = 'test.mosquitto.org'
+app.config['MQTT_BROKER_URL'] = 'mosquitto'
 app.config['MQTT_BROKER_PORT'] = 1883
 app.config['MQTT_USERNAME'] = ''
 app.config['MQTT_PASSWORD'] = ''

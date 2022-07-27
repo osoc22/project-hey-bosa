@@ -28,5 +28,12 @@ services:
   intent_handler:
     build: ./mqtt_scripts/intent_handler
     depends_on:
-     - 'rhasspy'
+     - 'mosquitto'
     volumes: ["./mqtt_scripts/intent_handler:/intent_handler"]
+  ui:
+    build: ./ui
+    ports: ["5000:5000"]
+    volumes: ["./ui:/ui"]
+    depends_on:
+     - 'mosquitto'
+    
