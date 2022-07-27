@@ -43,32 +43,26 @@ class Conversation():
         self.waiting_for = [val + ["block"] if topic in current.not_leave()[i] else val for i, val in enumerate(self.waiting_for)]
         return before_remove != len(list(itertools.chain(*self.waiting_for)))
 
-    def add_say_text(self,text,origins,path = "default"):
+    def add_component(self,component,origins,path):
         id = self.id
         self.id += 1
         self.conversation.add_node(id)
         for origin in origins:
             self.conversation.add_edge(origin,id,path = path)
-        self.objects.update({id:ConversationSay(text)})
+        self.objects.update({id:component})
         return id
+
+    def add_say_text(self,text,origins,path = "default"):
+        return self.add_component(ConversationSay(text),origins,path)
 
     def add_exhaustive_choice(self,intents,origins,path = "default"):
-        id = self.id
-        self.id += 1
-        self.conversation.add_node(id)
-        for origin in origins:
-            self.conversation.add_edge(origin,id,path = path)
-        self.objects.update({id:ConversationChoices(intents)})
-        return id
+        return self.add_component(ConversationChoices(intents),origins,path)
 
     def add_send_message(self,msgs,origins,path = "default"):
-        id = self.id
-        self.id += 1
-        self.conversation.add_node(id)
-        for origin in origins:
-            self.conversation.add_edge(origin,id,path = path)
-        self.objects.update({id:ConversationSendMessage(msgs)})
-        return id
+        return self.add_component(ConversationSendMessage(msgs),origins,path)
+
+    def add_path(self,origin,destination,path = "default"):
+        self.conversation.add_edge(origin,destination,path = path)
     
 class ConversationComponent(ABC):
     def __init__(self) -> None:
@@ -185,7 +179,7 @@ class ConversationChoices(ABC):
         recognised = [intent for intent in self.intents]
 
         return recognised + [
-            "notText",
+            "noText",
             "notRelevant"
             ]
 
@@ -221,6 +215,8 @@ def create_conversation_graph():
     show_list = conversation.add_send_message([{"topic":"hermes/handler/list","list":["Verbal","Visual","Written","Physical"]}],[greeting])
     information = conversation.add_say_text("I can give you more information on the types of harassment displayed on the screen. About what form would you like to have more information.",[show_list])
     choice = conversation.add_exhaustive_choice(["Verbal","Visual","Written","Physical"],[information])
+    no_text = conversation.add_say_text("I did not get that could you pls repeat!",[choice],"noText")
+    conversation.add_path(no_text,choice)
     verbal = conversation.add_say_text("If someone verbally abuses you, try to involve friends,if they are not available record it and report it to the organisation or the police",[choice],"Verbal")
     visual = conversation.add_say_text("If someone is making inappropriate gestures, first, let them know you don't feel comfortable and ask to stop if they don't respond, try to document it, report it to the organisation or the police",[choice],"Visual")
     written = conversation.add_say_text("When someone is sending you inappropriate texts I would suggest you document it and report it to the organisation and/or police.",[choice],"Written")
@@ -228,6 +224,7 @@ def create_conversation_graph():
     show_qr = conversation.add_send_message([{"topic":"hermes/handler/qr"}],[verbal,visual,written,physical])
     more_info = conversation.add_say_text("You can find more information on allesoverseks.be",[show_qr])
     ending = conversation.add_say_text("Thank you for trying out the demo. If you would like more information about how the system works come talk to us at the booth!",[more_info])
+    conversation.add_path(ending,1)
     return conversation
     """conversation.add_choices()
     conversation.add_say_text
