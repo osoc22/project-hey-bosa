@@ -14,7 +14,7 @@ services:
       - rasa
       - mosquitto
     volumes:
-        - '.config/rhasspy/profiles:/profiles'
+        - './config/rhasspy/profiles:/profiles'
     image: rhasspy/rhasspy
     command: --user-profiles /profiles --profile en
   mosquitto:

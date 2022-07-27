@@ -223,16 +223,6 @@ def create_conversation_graph():
     physical = conversation.add_say_text("If you see someone getting touched inappropriatly you can isolate the attacker by standing in front of the victim or distract them.",[choice],"Physical")
     show_qr = conversation.add_send_message([{"topic":"hermes/handler/qr"}],[verbal,visual,written,physical])
     more_info = conversation.add_say_text("You can find more information on allesoverseks.be",[show_qr])
-    ending = conversation.add_say_text("Thank you for trying out the demo. If you would like more information about how the system works come talk to us at the booth!",[more_info])
+    ending = conversation.add_say_text("Thank you for trying out the demo. If you would like more information about how the system works ask one of us",[more_info])
     conversation.add_path(ending,1)
     return conversation
-    """conversation.add_choices()
-    conversation.add_say_text
-    d = {
-        1:"I can give you more information on the types of harassment displayed on the screen. About what form would you like to have more information.",
-        2:"If someone verbally abuses you, try to involve friends,if they are not available record it and report it to the organisation or the police",
-        3:"When someone is sending you inappropriate texts I would suggest you document it and report it to the organisation and/or police.",
-        4:"If someone is making inappropriate gestures, first, let them know you don't feel comfortable and ask to stop if they don't respond, try to document it, report it to the organisation or the police",
-        5:"If you see someone getting touched inappropriatly you can isolate the attacker by standing in front of the victim or distract them.",
-        6:"",
-    }"""

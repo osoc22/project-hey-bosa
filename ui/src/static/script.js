@@ -14,7 +14,7 @@ function oneSecondFunction() {
             else if (data["hermes/handler/list"]  != undefined && data["hermes/handler/list"][1] >= 10) {
                 $("#image").html('<img src="/static/img/list.png" alt="list of types of sexual abuse">');
 
-            } else if (data["hermes/handler/convesation/stop"]  != undefined && data["hermes/handler/convesation/stop"][1] >= 10) {
+            } else if (data["hermes/handler/conversation/stop"]  != undefined && data["hermes/handler/conversation/stop"][1] >= 10) {
                 $("#image").html("<img src='/static/img/titlePage.png' alt='vac-title-page'>");
             }
             
