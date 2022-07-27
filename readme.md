@@ -32,10 +32,21 @@ This project was **started on** July 4th, 2022.
 ## Setup
 ### Hardware
 * 1 Raspberry PI
-*
-
+* A USB headset
+* A button to activate the bot
 ### Software
-* 
+* **Raspberry**:  
+    * Run this command in your terminal to install Rhasspy:
+
+    * Once you had it running once, you can turn Rhasspy back on using:
+
+* **Server-side**:
+    * Install [Docker](https://www.docker.com/get-started/)
+    * In the project folder, run `docker compose up`
+    * You can find the different web interfaces to these adresses:
+        * `http://localhost:5000/` (UI reacting to mqtt messages)
+        * `http://localhost:12101/` (Rhasspy web interface)
+
 ## Current implementation
 ### Architecture overview
 ![Architecture diagram]()
@@ -71,7 +82,7 @@ You'll find here the ideas we had for the future of the product.
 ### Handler
 
 ### Intent handling
-
+* Currently, we use a button to trigger the conversation with the user. It can easily be replaced with a wake word. For coherence, the mqtt topic `hermes/button/start` and `hermes/button/stop` could be renamed.
 ### UI
 * Replace images shown with actual HTML and CSS.
 * When the list is shown on the screen, hide or change the color of the list items already chosen by the user to make the remaining choices stand out more.
