@@ -1,4 +1,4 @@
 mosquitto/data/mosquitto.db
 mosquitto/log/mosquitto.log
 rasa/models/*
-.config/*
+.config/rasa/global.yml
