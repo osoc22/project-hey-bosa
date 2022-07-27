@@ -1,6 +1,6 @@
 """
 
-A small Test application to test the VAC user interface using Flask-MQTT.
+A small application to show a user interface for VAC, using Flask-MQTT.
 
 """
 
@@ -25,22 +25,15 @@ app.config['MQTT_KEEPALIVE'] = 5
 app.config['MQTT_TLS_ENABLED'] = False
 print('Configured MQTT IP Address: ' + app.config['MQTT_BROKER_URL'])
 
-# Parameters for SSL enabled
-# app.config['MQTT_BROKER_PORT'] = 8883
-# app.config['MQTT_TLS_ENABLED'] = True
-# app.config['MQTT_TLS_INSECURE'] = True
-# app.config['MQTT_TLS_CA_CERTS'] = 'ca.crt'
-
 messages_recieved = {}
 messages_old = {}
 clock_start = 10
-debug_level = 0
+debug_level = 0 # 0 to hide debug prints, 1 to show them
 
 mqtt = Mqtt(app)
 socketio = SocketIO(app)
 bootstrap = Bootstrap(app)
 
-# 0 to hide debug prints, 1 to show them
 
 @app.route('/')
 def index():
@@ -54,24 +47,24 @@ def ping():
 
 @socketio.on('connect')
 def confirm_connect():
-    print('connected!')
+    if debug_level == 1:
+        print('connected!')
 
 @socketio.on('subscribe')
 def handle_subscribe(data):
     mqtt.subscribe(data)
-    print('subscribed to {}!'.format(data))
 
-
-@socketio.on('unsubscribe_all')
-def handle_unsubscribe_all():
-    mqtt.unsubscribe_all()
+    if debug_level == 1:
+        print('subscribed to {}!'.format(data))
 
 @mqtt.on_message()
 def handle_messages(client, userdata, message):
     global clock_start
-    print('Received message on topic {}: {}'.format(message.topic, message.payload.decode()))
 
-    # before sending new message, derement clock for older messages
+    if debug_level == 1:
+        print('Received message on topic {}: {}'.format(message.topic, message.payload.decode()))
+
+    # before sending new message, decrement clock for older messages
     decrement_messages_clock()
 
     messages_recieved.update({message.topic: (message.payload.decode(), clock_start)})
@@ -86,8 +79,9 @@ def decrement_messages_clock():
         clock -= 1
         message = (item[1][0], clock)
         messages_recieved.update({item[0]: message})
-
-        print('\n updated clock for', item[0])
+        
+        if debug_level == 1:
+            print('\n updated clock for', item[0])
 
 def check_messages_clock():
     for item in messages_recieved.items():
@@ -117,6 +111,10 @@ def clear_messages_old():
 
 handle_subscribe('test/pls')
 handle_subscribe('test/hey')
+
+# to be activated when using definitive mqtt broker URL
+# handle_subscribe('hermes/handler/#')
+# handle_subscribe('hermes/button/#')
 
 if __name__ == '__main__':
     socketio.run(app, host='0.0.0.0', port=5000, use_reloader=False, debug=True)
