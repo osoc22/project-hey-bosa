@@ -72,11 +72,15 @@ This follows the syntax from the [rhasspy documentation](https://rhasspy.readthe
 For text to speech we use NanoTTS which is the recommended system of Rhasspy.
 
 ### Intent handling
+![Conversation example](documentation/Conversation-Example.drawio.svg)
 The intent handler is a python script which is subscribed to some MQTT topics.
 The intent handler uses a conversation data structure to guide the conversation.
 The structure allows or different components to be added.
 Rhasspy can add text, send a message over MQTT or give the user a choice.
 This is extendible using the ``ConversationComponent`` class.
+
+![Conversation Visual](documentation/Conversation-Visual.drawio.svg)
+
 It has a ``on_entry``, ``to_leave``, ``leave_path``, ``not_leave`` and ``on_leave``.
 The ``on_entry`` will send out an MQTT messages when the node is entered.
 The ``to_leave``, ``leave_path`` and ``not_leave`` contain topics that will decide down which path the conversation will go.
@@ -94,15 +98,15 @@ You'll find here the ideas we had for the future of the product.
 * The project is currently running with a headset for voice input and output. However, this could be changed using a *ReSpeaker* on a *Raspberry PI 3* for the microphone and a simple speaker to hear the bot's answer.
 ### Rhasspy (Voice assistant)
 #### Configuration
-
+Other NLUs and settings could be tested to look at performance
 ### NLU (Rasa)
-
+* Integrate the newer versions of rasa with Rhasspy
 ### TTS / STT
-
-### Handler
-
+* Might be interesting to look at other tts and stt systems since not all of them have been tested.
 ### Intent handling
 * Currently, we use a button to trigger the conversation with the user. It can easily be replaced with a wake word. For coherence, the mqtt topic `hermes/button/start` and `hermes/button/stop` could be renamed.
+* There could be more components added to the conversation handler.
+* The handler now deals with the conversation but this could be handled by another component. (Not clear whether the dialogue manager of rhasspy should do this)
 ### UI
 * Replace images shown with actual HTML and CSS.
 * When the list is shown on the screen, hide or change the color of the list items already chosen by the user to make the remaining choices stand out more.
