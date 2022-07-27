@@ -27,7 +27,7 @@ This project was **started on** July 4th, 2022.
 
 ### Made possible by
 * [BOSA Digital Transformation Office](https://bosa.belgium.be/)
-* [IO Digital](https://www.iodigital.com/)
+* [IO](https://www.iodigital.com/)
 * [Dalberg Data Insights](https://dalberg.com/what-we-do/dalberg-data-insights/)
 ## Setup
 ### Hardware
@@ -39,7 +39,6 @@ This project was **started on** July 4th, 2022.
     * Run this command in your terminal to install Rhasspy:
 
     * Once you had it running once, you can turn Rhasspy back on using:
-
 * **Server-side**:
     * Install [Docker](https://www.docker.com/get-started/)
     * In the project folder, run `docker compose up`
@@ -47,12 +46,18 @@ This project was **started on** July 4th, 2022.
         * `http://localhost:5000/` (UI reacting to mqtt messages)
         * `http://localhost:12101/` (Rhasspy web interface)
 
+### Software
+* 
 ## Current implementation
 ### Architecture overview
-![Architecture diagram]()
+![Architecture diagram](documentation/architecture.drawio.svg)
+* There are three hardware components which contain different parts of software.
+    * **Raspberry Pie** The raspberry pie handles the **audio** (input and output) and wakeword of rhasspy communicating everything to an **external** mqtt broken (the current one is running on the server)
+    * **Server** The server does all the hard work. It takes the audio from the raspberry pie and creates the **text** using **kaldi** (through Rhasspy). It gives the text to **rasa** to get the **intent** (Through Rhasspy). The **handler** will take this and guide the **conversation** (over mqtt).
+    * **Arduino** The arduino acts as a medium to pass on the **button** signal. It sends the mqtt broker that the button has been pressed down.
 ### Rhasspy (Voice assistant)
 #### Configuration
-
+In the repository you can find 3 files in the 
 ### NLU (Rasa)
 
 ### TTS / STT
