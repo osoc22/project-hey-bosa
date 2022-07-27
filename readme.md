@@ -36,9 +36,10 @@ This project was **started on** July 4th, 2022.
 * A button to activate the bot
 ### Software
 * **Raspberry**:  
-    * Run this command in your terminal to install Rhasspy:
-
-    * Once you had it running once, you can turn Rhasspy back on using:
+    * Run this commmand in your terminal 
+    ```
+    docker run -it     -p 12101:12101     -v "$HOME/.config/rhasspy/profiles:/profiles"     --device /dev/snd     rhasspy/rhasspy     --profile en     --user-profiles /profiles^
+    ```
 * **Server-side**:
     * Install [Docker](https://www.docker.com/get-started/)
     * In the project folder, run `docker compose up`
@@ -46,8 +47,6 @@ This project was **started on** July 4th, 2022.
         * `http://localhost:5000/` (UI reacting to mqtt messages)
         * `http://localhost:12101/` (Rhasspy web interface)
 
-### Software
-* 
 ## Current implementation
 ### Architecture overview
 ![Architecture diagram](documentation/architecture.drawio.svg)
@@ -58,14 +57,30 @@ This project was **started on** July 4th, 2022.
 ### Rhasspy (Voice assistant)
 #### Configuration
 In the repository you can find 3 files in the 
+``config/rhasspy/profiles/en/`` folder.
+
+### Speech To Text
+The speech to text system we use is called kaldi.
+It trains a model using the ``sentences.ini`` file.
+This follows the syntax from the [rhasspy documentation](https://rhasspy.readthedocs.io/en/latest/training/).
+
 ### NLU (Rasa)
+The rasa model will train using the ``sentences.ini`` file. 
+This follows the syntax from the [rhasspy documentation](https://rhasspy.readthedocs.io/en/latest/training/).
 
-### TTS / STT
-
-### Handler
+### TTS
+For text to speech we use NanoTTS which is the recommended system of Rhasspy.
 
 ### Intent handling
-
+The intent handler is a python script which is subscribed to some MQTT topics.
+The intent handler uses a conversation data structure to guide the conversation.
+The structure allows or different components to be added.
+Rhasspy can add text, send a message over MQTT or give the user a choice.
+This is extendible using the ``ConversationComponent`` class.
+It has a ``on_entry``, ``to_leave``, ``leave_path``, ``not_leave`` and ``on_leave``.
+The ``on_entry`` will send out an MQTT messages when the node is entered.
+The ``to_leave``, ``leave_path`` and ``not_leave`` contain topics that will decide down which path the conversation will go.
+The ``on_leave`` shows which MQTT messages to send when a node is left.
 ### UI
 
 ## Known Issues
