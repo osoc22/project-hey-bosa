@@ -1,0 +1,7 @@
+mosquitto/data/mosquitto.db
+mosquitto/log/mosquitto.log
+rasa/models/*
+config/rhasspy/profiles/en/supervisord.*
+*.gz
+config/rhasspy/profiles/en/kaldi/*
+config/rhasspy/profiles/en/kaldi_unknown_words.txt

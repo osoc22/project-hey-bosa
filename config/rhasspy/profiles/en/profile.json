@@ -1,0 +1,32 @@
+{
+    "dialogue": {
+        "satellite_site_ids": "sattelite",
+        "system": "rhasspy"
+    },
+    "intent": {
+        "rasa": {
+            "url": "http://rasa:5005/"
+        },
+        "satellite_site_ids": "sattelite",
+        "system": "rasa"
+    },
+    "mqtt": {
+        "enabled": "true",
+        "host": "mosquitto",
+        "site_id": "master"
+    },
+    "sounds": {
+        "system": "hermes"
+    },
+    "speech_to_text": {
+        "kaldi": {
+            "mix_weight": "0.5"
+        },
+        "satellite_site_ids": "sattelite",
+        "system": "kaldi"
+    },
+    "text_to_speech": {
+        "satellite_site_ids": "sattelite",
+        "system": "nanotts"
+    }
+}
