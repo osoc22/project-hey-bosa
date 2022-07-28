@@ -1,5 +1,4 @@
 # VAC project
-## Table of contents
 
 ## About
 This project was **started** on **July 4th, 2022** during **Open Summer of Code 2022**.  
